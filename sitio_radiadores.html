@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RadiadoresStore | Catálogo profesional de radiadores</title>
+    <meta name="description" content="Venta de radiadores para todas las marcas. Catálogo actualizado, cotizaciones por WhatsApp. Envíos a todo Colombia con Viaexpress.">
+    <meta name="keywords" content="radiadores, venta de radiadores, autopartes, refrigeración, radiadores por marca, Casanare, Colombia, Viaexpress">
+    <meta name="author" content="RadiadoresStore">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="RadiadoresStore - Radiadores para todas las marcas">
+    <meta property="og:description" content="Encuentra el radiador adecuado. Filtra por marca y cotiza directamente por WhatsApp. Envíos con Viaexpress.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1581244277943-fe4a9c777b8a?w=1200&h=630&fit=crop">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; }
+        .navbar { background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.04); padding: 0.8rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+        .nav-logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #0f3b4c, #1e6f8c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .nav-logo i { color: #d84e2e; margin-right: 6px; }
+        .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #2c5f7a; font-weight: 500; transition: color 0.2s; font-size: 0.9rem; }
+        .nav-links a:hover { color: #d84e2e; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #0b2b40, #1c5e7a); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .hero p { color: #2c5f7a; font-size: 1rem; background: #e2edf2; display: inline-block; padding: 0.3rem 1.5rem; border-radius: 40px; }
+        .carousel-section { margin-bottom: 2.5rem; }
+        .carousel-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 28px; box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
+        .carousel-slides { display: flex; transition: transform 0.5s ease; }
+        .carousel-slide { min-width: 100%; }
+        .carousel-slide img { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; background: #cbd5e1; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: 0.2s; }
+        .carousel-btn:hover { background: #d84e2e; }
+        .prev { left: 16px; }
+        .next { right: 16px; }
+        .dots { text-align: center; margin-top: 1rem; }
+        .dot { height: 10px; width: 10px; margin: 0 6px; background-color: #cbd5e1; border-radius: 50%; display: inline-block; cursor: pointer; transition: 0.2s; }
+        .dot.active { background-color: #d84e2e; transform: scale(1.2); }
+        .info-cards { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 2.5rem; }
+        .info-card { background: white; border-radius: 24px; padding: 1.2rem 1.5rem; flex: 1; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; transition: transform 0.2s, box-shadow 0.2s; }
+        .info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .info-card i { font-size: 2rem; color: #d84e2e; margin-bottom: 0.5rem; display: block; }
+        .info-card h3 { font-size: 1rem; font-weight: 700; color: #1e5a74; }
+        .info-card p { font-size: 0.85rem; color: #547181; margin-top: 0.25rem; }
+        .filter-section { background: white; border-radius: 80px; padding: 0.5rem 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
+        .brand-filter { flex: 2; min-width: 220px; }
+        .brand-filter select { width: 100%; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #cbd5e1; background: #f8fafc; font-family: inherit; font-weight: 500; font-size: 0.95rem; color: #1e293b; cursor: pointer; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23475669" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>'); background-repeat: no-repeat; background-position: right 1.2rem center; transition: border 0.2s; }
+        .brand-filter select:focus { outline: none; border-color: #d84e2e; }
+        .clear-btn { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 0.7rem 1.8rem; border-radius: 60px; font-weight: 600; color: #2c5f7a; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 8px; }
+        .clear-btn:hover { background: #e6edf4; color: #d84e2e; }
+        .results-info { display: flex; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .results-info.visible { opacity: 1; transform: translateY(0); }
+        .counter { background: #eef3f7; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: #1e5a74; display: inline-flex; align-items: center; gap: 6px; }
+        .counter span { font-weight: 800; color: #d84e2e; font-size: 1.1rem; transition: all 0.2s; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; margin-bottom: 2.5rem; }
+        .product-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border: 1px solid #eef2f6;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.95) translateY(15px);
+            animation: cardAppear 0.4s forwards;
+        }
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 24px 36px -12px rgba(0,0,0,0.2);
+            border-color: #ffd5c4;
+        }
+        .stock-badge { position: absolute; top: 12px; right: 12px; background: #d84e2e; color: white; font-size: 0.7rem; font-weight: bold; padding: 0.2rem 0.7rem; border-radius: 40px; z-index: 2; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .stock-badge.low { background: #f97316; animation: pulseOrange 1s infinite; }
+        .stock-badge.out { background: #b91c1c; }
+        @keyframes pulseOrange {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.02); background: #ff8c42; }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .card-img { background: linear-gradient(145deg, #fef9f5, #fef3ef); padding: 1.5rem; text-align: center; border-bottom: 1px solid #f0f2f5; }
+        .card-img i { font-size: 3rem; color: #c74325; margin: 0 4px; }
+        .brand-badge { background: #d84e2e10; color: #c54122; font-weight: 700; font-size: 0.7rem; padding: 0.2rem 0.8rem; border-radius: 40px; display: inline-block; margin-top: 8px; }
+        .card-info { padding: 1.2rem; }
+        .product-brand { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #6c8d9e; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+        .product-title { font-weight: 800; font-size: 1.1rem; margin: 0.25rem 0 0.25rem; color: #0a2e3f; line-height: 1.3; }
+        .product-desc { font-size: 0.8rem; color: #547181; margin-bottom: 0.75rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; }
+        .extra-specs { display: flex; gap: 0.8rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .spec-chip { background: #f1f5f9; border-radius: 30px; padding: 0.2rem 0.7rem; font-size: 0.7rem; font-weight: 600; color: #1e5a74; display: inline-flex; align-items: center; gap: 5px; }
+        .price-detail { font-size: 0.9rem; font-weight: 700; color: #1a5e7e; margin: 0.2rem 0; display: flex; align-items: center; gap: 6px; }
+        .price-detail i { width: 1.2rem; color: #d84e2e; }
+        .price-detail small { font-weight: 400; font-size: 0.7rem; color: #6c8d9e; }
+        .stock-text { font-size: 0.75rem; font-weight: 700; margin: 0.5rem 0; display: flex; align-items: center; gap: 6px; }
+        .stock-text.low { color: #f97316; background: #fff3e6; padding: 0.2rem 0.5rem; border-radius: 20px; display: inline-flex; }
+        .stock-text.out { color: #b91c1c; }
+        .supplier { font-size: 0.7rem; color: #6f8ea0; border-top: 1px solid #eef2f6; margin-top: 0.6rem; padding-top: 0.5rem; display: flex; align-items: center; gap: 4px; }
+        .btn-buy {
+            margin-top: 0.8rem;
+            background: #fef3ef;
+            border: 1px solid #ffcdbb;
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #d84e2e;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-buy:hover { background: #d84e2e; color: white; border-color: #d84e2e; transform: scale(1.02); }
+        .empty-message, .no-results, .loading, .initial-message { text-align: center; padding: 3rem; background: white; border-radius: 48px; color: #3c6e8c; grid-column: 1 / -1; }
+        .initial-message i { font-size: 3rem; margin-bottom: 1rem; color: #d84e2e; }
+        .testimonials { background: white; border-radius: 32px; padding: 2rem; margin-top: 1rem; margin-bottom: 2rem; border: 1px solid #e2e8f0; }
+        .testimonials h3 { font-size: 1.4rem; text-align: center; margin-bottom: 1.5rem; color: #1c5e7a; }
+        .testimonial-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+        .testimonial-card { background: #f8fafc; border-radius: 24px; padding: 1.2rem; flex: 1; min-width: 220px; border-left: 4px solid #d84e2e; transition: transform 0.2s; }
+        .testimonial-card:hover { transform: translateX(5px); }
+        .testimonial-card i.fa-quote-left { color: #d84e2e; opacity: 0.4; margin-right: 6px; }
+        .testimonial-card p { font-size: 0.9rem; color: #2c5f7a; margin-bottom: 0.5rem; }
+        .testimonial-card .stars { color: #f5b042; font-size: 0.8rem; margin-top: 8px; }
+        footer { text-align: center; font-size: 0.75rem; color: #68879b; border-top: 1px solid #e2e8f0; padding: 2rem 1rem; margin-top: 1rem; }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 1.5s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: none;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+            50% { transform: scale(1.08); box-shadow: 0 10px 24px rgba(37,211,102,0.5); }
+            100% { transform: scale(1); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+        }
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: white; padding: 0.8rem; text-align: center; z-index: 1100; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; font-size: 0.85rem; transform: translateY(100%); transition: 0.3s; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner a { color: #ffb347; }
+        .cookie-btn { background: #d84e2e; border: none; padding: 0.4rem 1rem; border-radius: 40px; color: white; font-weight: bold; cursor: pointer; }
+        .debug-alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin-bottom: 20px; border-radius: 8px; font-size: 14px; display: none; }
+        @media (max-width: 680px) { .navbar { flex-direction: column; text-align: center; padding: 1rem; } .filter-section { border-radius: 30px; flex-direction: column; align-items: stretch; } .info-cards { flex-direction: column; align-items: stretch; } .brand-filter { width: 100%; } .whatsapp-float { width: 50px; height: 50px; font-size: 1.7rem; bottom: 16px; right: 16px; } .product-title { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-temperature-low"></i> RadiadoresStore</div>
+    <div class="nav-links">
+        <a href="#" onclick="showSection('home'); return false;">Inicio</a>
+        <a href="#" onclick="showSection('about'); return false;">Nosotros</a>
+        <a href="#" onclick="showSection('privacy'); return false;">Privacidad</a>
+        <a href="#" onclick="showSection('terms'); return false;">Términos</a>
+        <a href="#" onclick="showSection('contact'); return false;">Contacto</a>
+    </div>
+</nav>
+
+<div id="homeSection">
+    <div class="container">
+        <div class="hero">
+            <h1><i class="fas fa-car-side"></i> Radiadores para todas las marcas</h1>
+            <p>Calidad, garantía y envíos a todo Colombia con <strong>Viaexpress</strong></p>
+        </div>
+
+        <!-- Mensaje de depuración (visible solo si hay problema) -->
+        <div id="debugMessage" class="debug-alert"></div>
+
+        <div class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-slides" id="carouselSlides">
+                    <div class="carousel-slide"><img src="https://i.ibb.co/8LsFGpD5/file-000000008894720ea74c56879f950b9c-1.png" alt="Radiador" loading="lazy"></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/zhSHLCyw/file-000000008894720ea74c56879f950b9c-w2.png" alt="Radiador" loading="lazy"></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/21dLgTVT/file-000000000fdc720eb4df33005bb0beff.png" alt="Radiador" loading="lazy"></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/S7V8nzYX/file-000000008894720ea74c56879f950b9c-4.png" alt="Radiador" loading="lazy"></div>
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                <button class="carousel-btn next" id="nextBtn">❯</button>
+            </div>
+            <div class="dots" id="dotsContainer"></div>
+        </div>
+
+        <div class="info-cards">
+            <div class="info-card"><i class="fas fa-map-marker-alt"></i><h3>Yopal, Casanare</h3><p>Colombia</p></div>
+            <div class="info-card"><i class="fas fa-truck-fast"></i><h3>Envíos con Viaexpress</h3><p>Rápidos y seguros</p></div>
+            <div class="info-card"><i class="fas fa-star"></i><h3>+150 reseñas</h3><p>5 estrellas</p></div>
+            <div class="info-card"><i class="fab fa-whatsapp"></i><h3>Cotización inmediata</h3><p>WhatsApp</p></div>
+        </div>
+
+        <div class="filter-section">
+            <div class="brand-filter">
+                <select id="brandSelect">
+                    <option value="">⚡ Selecciona una marca</option>
+                </select>
+            </div>
+            <button class="clear-btn" id="clearFiltersBtn"><i class="fas fa-eraser"></i> Limpiar filtro</button>
+        </div>
+        <div class="results-info" id="resultsInfo">
+            <div class="counter"><i class="fas fa-car-side"></i> Radiadores mostrados: <span id="resultCount">0</span></div>
+            <div class="counter"><i class="fas fa-dollar-sign"></i> Precios actualizados en vivo</div>
+        </div>
+        <div id="productsContainer" class="products-grid">
+            <div class="initial-message">
+                <i class="fas fa-search fa-3x"></i>
+                <p><strong>🔍 Selecciona una marca</strong><br>para ver los radiadores disponibles.</p>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h3><i class="fas fa-comment-dots"></i> Lo que dicen nuestros clientes</h3>
+            <div class="testimonial-grid">
+                <div class="testimonial-card"><i class="fas fa-quote-left"></i> Excelente atención, el radiador llegó súper rápido a Medellín con Viaexpress. Muy contento.<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><small>— Carlos G.</small></div>
+                <div class="testimonial-card"><i class="fas fa-quote-left"></i> Producto original, precio competitivo y el envío por Viaexpress fue impecable.<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><small>— Andrea M.</small></div>
+                <div class="testimonial-card"><i class="fas fa-quote-left"></i> Me asesoraron muy bien por WhatsApp, encontré el radiador perfecto para mi camioneta. Llegó por Viaexpress sin contratiempos.<div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><small>— Luis F.</small></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="aboutSection" style="display: none;" class="container"><div style="background:white; border-radius:32px; padding:2rem;"><h1>Sobre RadiadoresStore</h1><p>Nacimos en Yopal, Casanare, con la misión de ofrecer radiadores de alta calidad para todas las marcas. Contamos con más de 10 años de experiencia y una alianza estratégica con <strong>Viaexpress</strong> para llegar a cualquier rincón de Colombia con entregas ágiles y seguimiento.</p><p><strong>Misión:</strong> Proveer soluciones de refrigeración con excelente servicio postventa.</p><p><strong>Visión:</strong> Ser líderes en venta de radiadores en Colombia, reconocidos por nuestra eficiencia y honestidad.</p><div class="rating-stars" style="color:#f5b042; margin:1rem 0"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5/5 en +150 reseñas</div><p>📍 <strong>Ubicación:</strong> Yopal, Casanare - Colombia</p><p>🚚 <strong>Transportadora aliada:</strong> <strong>Viaexpress</strong> (envíos a todo el país con número de guía y garantía).</p></div></div>
+<div id="privacySection" style="display: none;" class="container"><div style="background:white; border-radius:32px; padding:2rem;"><h1>Política de Privacidad</h1><p>Recopilamos datos personales únicamente para gestionar cotizaciones y mejorar el servicio. No compartimos tu información con terceros. Puedes solicitar la eliminación de tus datos escribiendo a soporte@radiadoresstore.com.</p></div></div>
+<div id="termsSection" style="display: none;" class="container"><div style="background:white; border-radius:32px; padding:2rem;"><h1>Términos y Condiciones</h1><p>Los precios son referenciales. La cotización final se confirma por WhatsApp. Las entregas son gestionadas por <strong>Viaexpress</strong>. Garantía directamente con el proveedor.</p></div></div>
+<div id="contactSection" style="display: none;" class="container"><div style="background:white; border-radius:32px; padding:2rem;"><h1>Contacto</h1><p><i class="fab fa-whatsapp"></i> <strong>+57 313 8237540</strong></p><p>📧 radiadoresstore@mbox.re</p><p>📍 Yopal, Casanare.</p><p>Horario: L-V 8am a 6pm</p></div></div>
+
+<footer>
+    <i class="fas fa-cloud-upload-alt"></i> Catálogo sincronizado en tiempo real · Envíos con <strong>Viaexpress</strong> a toda Colombia<br>
+    <a href="#" onclick="showSection('privacy'); return false;">Privacidad</a> | <a href="#" onclick="showSection('terms'); return false;">Términos</a> | <a href="#" onclick="showSection('about'); return false;">Nosotros</a>
+</footer>
+
+<a href="#" id="whatsappFloatBtn" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div id="cookieBanner" class="cookie-banner"><span>🍪 Usamos cookies para mejorar tu experiencia. <a href="#" onclick="showSection('privacy'); return false;">Más info</a></span><button id="acceptCookiesBtn" class="cookie-btn">Aceptar</button></div>
+
+<script>
+    // CONFIGURACIÓN
+    const SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbypB66TCqm0UERhLY_bZpUnZjQYmSIQX9X4awNJXtVua71cq2F5pJ7ye-iovXKA6db8/exec";
+    const WHATSAPP_NUMBER = "573138237540";
+    const DEFAULT_MSG = "Hola, vi el catálogo de RadiadoresStore y me gustaría recibir más información. ¡Gracias!";
+
+    let allProducts = [], currentBrand = "";
+    let isLoading = true;
+    const productsContainer = document.getElementById("productsContainer");
+    const brandSelect = document.getElementById("brandSelect");
+    const clearBtn = document.getElementById("clearFiltersBtn");
+    const resultCountSpan = document.getElementById("resultCount");
+    const resultsInfo = document.getElementById("resultsInfo");
+    const whatsappFloatBtn = document.getElementById("whatsappFloatBtn");
+    const cookieBanner = document.getElementById("cookieBanner");
+    const acceptCookiesBtn = document.getElementById("acceptCookiesBtn");
+    const debugMessageDiv = document.getElementById("debugMessage");
+
+    // Carrusel
+    let currentSlide = 0;
+    const carouselSlides = document.getElementById('carouselSlides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const total = slides.length;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    function updateCarousel() { if(carouselSlides) carouselSlides.style.transform = `translateX(-${currentSlide * 100}%)`; document.querySelectorAll('.dot').forEach((d,i)=>{ if(i===currentSlide) d.classList.add('active'); else d.classList.remove('active'); }); }
+    function nextSlide() { currentSlide = (currentSlide+1)%total; updateCarousel(); }
+    function prevSlide() { currentSlide = (currentSlide-1+total)%total; updateCarousel(); }
+    function createDots() { if(!dotsContainer) return; dotsContainer.innerHTML = ''; for(let i=0;i<total;i++){ let dot = document.createElement('span'); dot.classList.add('dot'); if(i===currentSlide) dot.classList.add('active'); dot.addEventListener('click',()=>{ currentSlide=i; updateCarousel(); }); dotsContainer.appendChild(dot); } }
+    if(prevBtn && nextBtn && total>0){ prevBtn.addEventListener('click',prevSlide); nextBtn.addEventListener('click',nextSlide); createDots(); setInterval(nextSlide,5000); }
+
+    // Cookies
+    function checkCookieConsent(){ if(localStorage.getItem("cookie_consent")!=="accepted") cookieBanner.classList.add("show"); else cookieBanner.classList.remove("show"); }
+    function acceptCookies(){ localStorage.setItem("cookie_consent","accepted"); cookieBanner.classList.remove("show"); }
+    acceptCookiesBtn.addEventListener("click",acceptCookies); checkCookieConsent();
+
+    // Navegación secciones
+    function showSection(sectionId){
+        document.getElementById("homeSection").style.display = "none";
+        document.getElementById("aboutSection").style.display = "none";
+        document.getElementById("privacySection").style.display = "none";
+        document.getElementById("termsSection").style.display = "none";
+        document.getElementById("contactSection").style.display = "none";
+        if(sectionId==="home") document.getElementById("homeSection").style.display = "block";
+        else if(sectionId==="about") document.getElementById("aboutSection").style.display = "block";
+        else if(sectionId==="privacy") document.getElementById("privacySection").style.display = "block";
+        else if(sectionId==="terms") document.getElementById("termsSection").style.display = "block";
+        else if(sectionId==="contact") document.getElementById("contactSection").style.display = "block";
+        window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    // WhatsApp
+    function updateFloatLink(){ whatsappFloatBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MSG)}`; }
+    updateFloatLink();
+    function getWhatsLink(p){
+        let msg = `Hola, quiero cotizar:%0A🚗 Marca: ${p.brand}%0A📌 Modelo: ${p.model}%0A📅 Año: ${p.year || "No especificado"}%0A🔧 Motor: ${p.engine || "No especificado"}%0A🔖 Ref: ${p.reference}%0A💰 COP: $${typeof p.priceCOP==='number'?p.priceCOP.toLocaleString('es-CO'):p.priceCOP}%0A💵 USD: $${typeof p.priceUSD==='number'?p.priceUSD.toFixed(2):p.priceUSD}%0A📦 Stock: ${p.stock}%0A🏭 Proveedor: ${p.supplier}%0A🚚 Envío con Viaexpress a toda Colombia`;
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    }
+
+    // ========== MAPEO INTELIGENTE ==========
+    // Esta función detecta automáticamente los nombres reales de las columnas
+    function mapData(data){
+        if(!Array.isArray(data) || data.length === 0) return [];
+        
+        // Tomar el primer registro para ver los nombres de las columnas disponibles
+        const sample = data[0];
+        const columnNames = Object.keys(sample);
+        console.log("📊 Columnas disponibles en la hoja:", columnNames);
+        
+        // Buscar posibles nombres para Año y Motor (insensible a mayúsculas/minúsculas y tildes)
+        const yearKey = columnNames.find(key => 
+            key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === "año" || 
+            key.toLowerCase() === "year" ||
+            key.toLowerCase().includes("año")
+        ) || "Año";  // fallback
+        
+        const engineKey = columnNames.find(key => 
+            key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === "motor" ||
+            key.toLowerCase() === "engine" ||
+            key.toLowerCase().includes("motor")
+        ) || "Motor"; // fallback
+        
+        // Mostrar mensaje de depuración en la página si no encuentra las columnas
+        if (!columnNames.includes(yearKey) && debugMessageDiv) {
+            debugMessageDiv.style.display = "block";
+            debugMessageDiv.innerHTML = `⚠️ <strong>No se encontró la columna "Año"</strong>. Las columnas disponibles son: ${columnNames.join(", ")}. <br> Puedes ignorar si no la necesitas, o ajusta el nombre en tu hoja.`;
+        }
+        if (!columnNames.includes(engineKey) && debugMessageDiv && !columnNames.includes(yearKey)) {
+            debugMessageDiv.style.display = "block";
+            debugMessageDiv.innerHTML += `<br>⚠️ <strong>No se encontró la columna "Motor"</strong>.`;
+        } else if (!columnNames.includes(engineKey) && !debugMessageDiv.innerHTML.includes("Motor")) {
+            debugMessageDiv.style.display = "block";
+            debugMessageDiv.innerHTML += `<br>⚠️ <strong>No se encontró la columna "Motor"</strong>.`;
+        }
+        
+        console.log(`🔍 Usando: año -> "${yearKey}", motor -> "${engineKey}"`);
+        
+        // Filtrar filas que tengan marca válida
+        const filtered = data.filter(row => {
+            const marca = row["Marca"];
+            return marca && typeof marca === "string" && marca.trim() !== "";
+        });
+        
+        return filtered.map(r => ({
+            brand: r["Marca"] || "",
+            model: r["Modelo"] || "",
+            reference: r["Referencia de Radiador"] || "",
+            priceCOP: r["Precio (COP)"] || 0,
+            priceUSD: r["Precio (USD)"] || 0,
+            stock: r["Stock"] || 0,
+            supplier: r["Proveedor"] || "",
+            year: r[yearKey] || "",   // ← usa la clave detectada
+            engine: r[engineKey] || "" // ← usa la clave detectada
+        }));
+    }
+
+    const CACHE_KEY = 'radiadores_brands_cache';
+    const CACHE_EXPIRY = 30 * 60 * 1000;
+
+    async function loadProducts(){
+        isLoading=true;
+        productsContainer.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Cargando catálogo...</div>`;
+        try{
+            let resp = await fetch(SHEETS_API_URL);
+            if(!resp.ok) throw new Error("Error API");
+            let json = await resp.json();
+            console.log("📦 Datos recibidos (primeros 2 registros):", json.slice(0,2));
+            allProducts = mapData(json);
+            console.log("✅ Productos mapeados (primeros 2):", allProducts.slice(0,2));
+            const brands = [...new Map(allProducts.map(p=>[p.brand,p.brand])).values()].sort();
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ brands, timestamp: Date.now() }));
+            populateBrands(brands);
+        }catch(e){
+            console.error(e);
+            const cached = localStorage.getItem(CACHE_KEY);
+            if(cached){
+                const { brands, timestamp } = JSON.parse(cached);
+                if(Date.now() - timestamp < CACHE_EXPIRY){
+                    populateBrands(brands);
+                    allProducts = [];
+                    productsContainer.innerHTML = `<div class="initial-message"><i class="fas fa-search fa-3x"></i><p><strong>🔍 Selecciona una marca</strong><br>para ver los radiadores disponibles.</p></div>`;
+                    isLoading=false;
+                    return;
+                }
+            }
+            allProducts=[];
+            productsContainer.innerHTML=`<div class="no-results">Error al cargar datos. Verifica tu conexión.</div>`;
+            resultCountSpan.innerText="0";
+            isLoading=false; return;
+        }
+        isLoading=false;
+        showInitialMessage();
+    }
+
+    function showInitialMessage(){
+        productsContainer.innerHTML = `<div class="initial-message"><i class="fas fa-search fa-3x"></i><p><strong>🔍 Selecciona una marca</strong><br>para ver los radiadores disponibles.</p></div>`;
+        resultsInfo.classList.remove("visible");
+    }
+
+    function populateBrands(brandsArray){
+        brandSelect.innerHTML = '<option value="">⚡ Selecciona una marca</option>';
+        brandsArray.forEach(m=>{ let opt = document.createElement("option"); opt.value=m; opt.textContent=m; brandSelect.appendChild(opt); });
+        if(currentBrand && brandsArray.includes(currentBrand)) brandSelect.value = currentBrand;
+        else { currentBrand = ""; brandSelect.value = ""; }
+        showInitialMessage();
+    }
+
+    function updateProducts(){
+        if(!currentBrand){
+            showInitialMessage();
+            return;
+        }
+        if(isLoading && allProducts.length===0){
+            productsContainer.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Cargando...</div>`;
+            return;
+        }
+        let filtered = allProducts.filter(p=>p.brand===currentBrand);
+        renderProducts(filtered);
+    }
+
+    function renderProducts(prods){
+        if(prods.length===0){
+            productsContainer.innerHTML = `<div class="no-results">No hay radiadores para la marca seleccionada.</div>`;
+            resultsInfo.classList.remove("visible");
+            return;
+        }
+        resultsInfo.classList.add("visible");
+        let html = prods.map((p, idx) => {
+            let stockBadge = "";
+            let stockClass = "", stockIcon = "", stockText = `${p.stock} unidades`;
+            if(p.stock <= 0){
+                stockBadge = `<div class="stock-badge out"><i class="fas fa-times-circle"></i> AGOTADO</div>`;
+                stockClass = "out";
+                stockText = "Agotado";
+                stockIcon = "<i class='fas fa-ban'></i>";
+            } else if(p.stock <= 5){
+                stockBadge = `<div class="stock-badge low"><i class="fas fa-exclamation-triangle"></i> ¡STOCK BAJO!</div>`;
+                stockClass = "low";
+                stockText = `¡Últimas ${p.stock}!`;
+                stockIcon = "<i class='fas fa-exclamation-circle'></i>";
+            } else {
+                stockIcon = "<i class='fas fa-boxes'></i>";
+            }
+            let cop = typeof p.priceCOP==='number'?p.priceCOP.toLocaleString('es-CO'):p.priceCOP;
+            let usd = typeof p.priceUSD==='number'?p.priceUSD.toFixed(2):p.priceUSD;
+            let link = getWhatsLink(p);
+            let delay = idx * 0.05;
+            
+            // Mostrar año y motor si existen y tienen valor
+            let yearEngineHtml = "";
+            if((p.year && p.year.toString().trim() !== "") || (p.engine && p.engine.toString().trim() !== "")) {
+                yearEngineHtml = `<div class="extra-specs">
+                                    ${p.year && p.year.toString().trim() !== "" ? `<span class="spec-chip"><i class="fas fa-calendar-alt"></i> ${escapeHtml(p.year)}</span>` : ''}
+                                    ${p.engine && p.engine.toString().trim() !== "" ? `<span class="spec-chip"><i class="fas fa-engine"></i> ${escapeHtml(p.engine)}</span>` : ''}
+                                  </div>`;
+            }
+            
+            return `<div class="product-card" style="animation-delay: ${delay}s;">
+                        ${stockBadge}
+                        <div class="card-img"><i class="fas fa-oil-can fa-3x"></i><i class="fas fa-fan fa-2x"></i><div class="brand-badge">Compatible</div></div>
+                        <div class="card-info">
+                            <div class="product-brand">${escapeHtml(p.brand)}</div>
+                            <div class="product-title">${escapeHtml(p.model)}</div>
+                            <div class="product-desc"><strong>Ref:</strong> ${escapeHtml(p.reference)}</div>
+                            ${yearEngineHtml}
+                            <div class="price-detail"><i class="fas fa-credit-card"></i> COP: $${cop}</div>
+                            <div class="price-detail"><i class="fas fa-dollar-sign"></i> USD: $${usd} <small>+IVA</small></div>
+                            <div class="stock-text ${stockClass}">${stockIcon} Stock: ${stockText}</div>
+                            <div class="supplier"><i class="fas fa-truck"></i> Proveedor: ${escapeHtml(p.supplier)}</div>
+                            <a href="${link}" target="_blank" class="btn-buy"><i class="fab fa-whatsapp"></i> Solicitar cotización</a>
+                        </div>
+                    </div>`;
+        }).join("");
+        productsContainer.innerHTML = html;
+        resultCountSpan.innerText = prods.length;
+        resultCountSpan.style.transform = "scale(1.1)";
+        setTimeout(() => { if(resultCountSpan) resultCountSpan.style.transform = ""; }, 200);
+    }
+
+    function onBrandChange(e){
+        currentBrand = e.target.value;
+        updateProducts();
+    }
+    function clearFilters(){
+        currentBrand = "";
+        brandSelect.value = "";
+        showInitialMessage();
+    }
+    function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>]/g, m=>({ '&':'&amp;', '<':'&lt;', '&gt;':'&gt;' }[m])); }
+
+    brandSelect.addEventListener("change", onBrandChange);
+    clearBtn.addEventListener("click", clearFilters);
+    loadProducts();
+</script>
+</body>
+</html>
